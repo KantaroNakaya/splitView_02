@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+$breakpoint: (
+  tab: 'screen and (min-width: 768px)',
+  pc: 'screen and (min-width: 1025px)'
+);
+
+@mixin mq($bp) {
+  @media #{map-get($breakpoint, $bp)} {
+   @content;
+  }
+}
+
+$pt: 200px;
+
+header{
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: $pt;
+    top: 0px;
+    z-index: 999;
+    background-color: yellowgreen;
+}
+.title{
+    display: block;
+    width: 100%;
+    text-align: center;
+    h1{
+        font-size: 32px;
+    }
+    p{
+        font-size: 16px;
+    }
+}
+.all_box{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.half_box{
+    display: block;
+    width: 50%;
+}
+.left_side{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: sticky;
+    top: $pt;
+    height: 100vh;
+    background-image: url(../img/left_bg.jpg);
+    &_text{
+        padding-top: 0px;
+        @include mq(pc) {
+            display: flex;
+            padding-top: 32px;
+        }
+        p{
+            font-size: 16px;
+            line-height: calc(64px / 32px);
+            padding: 1em 0;
+            color: black;
+            text-align: center;
+            @include mq(pc) {
+                padding: 1em;
+            }
+            span{
+                background: linear-gradient(transparent 70%, red 100%);
+                padding: 0.5em;
+            }
+        }
+    }
+    &_memo{
+        position: absolute;
+        bottom: calc($pt + 32px);
+        font-size: 12px;
+        color: red;
+    }
+}
+.right_side{
+    padding-top: $pt;
+    background-color: #000;
+    &_image{
+        width: 75%;
+        margin: 8px auto;
+        img{
+            width: 100%;
+        }
+    }
+}
+.footer{
+    display: block;
+    float: left;
+    clear: none;
+    width: 100%;
+    text-align: center;
+    line-height: 1;
+    padding: 1em 0;
+    background: orange;
+}
